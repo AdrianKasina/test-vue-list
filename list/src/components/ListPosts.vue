@@ -1,10 +1,11 @@
 <template>
   <div id="posts">
+    <Modal v-if="showModal" @close="showModal = false" :post="currentPost"></Modal>
     <ul>
       <li v-for="(post, index) in posts" :key="post.id">
         <h3>{{ post.title }}</h3>
         <p>{{ post.body }}</p>
-        <button class="edit">Edit</button>
+        <button class="edit" id="show-modal" @click="showModal = true, currentPost = post">Edit</button>
         <button class="delete" @click="deletePost(index)">Delete</button>
       </li>
     </ul>
@@ -13,14 +14,22 @@
 
 <script>
 import axios from "axios";
+import Modal from "./Modal.vue";
 
 export default {
   name: "ListPosts",
+  components: {
+    Modal
+  },
+
   data() {
     return {
-      posts: []
+      posts: [],
+      showModal: false,
+      currentPost: false
     };
   },
+
   created() {
     axios
       .get("https://jsonplaceholder.typicode.com/posts")
@@ -32,10 +41,16 @@ export default {
     deletePost: function(index) {
       axios
         .delete("https://jsonplaceholder.typicode.com/posts/" + index)
-        .then(() => {
+        .then(response => {
           this.posts.splice(index, 1);
+          alert(
+            "HTTP status code from the server response: " + response.status
+          );
         });
     }
+    // onClickEdit: function(index) {
+    //   console.log(index); // eslint-disable-line no-console
+    // }
   }
 };
 </script>
@@ -49,6 +64,7 @@ ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding: 0;
 }
 
 li {
@@ -67,6 +83,10 @@ button {
   padding: 8px;
   background: white;
   text-transform: uppercase;
+}
+
+button:hover {
+  background: rgba(194, 193, 202, 0.2);
 }
 
 .edit {
