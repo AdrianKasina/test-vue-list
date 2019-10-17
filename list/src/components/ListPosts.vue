@@ -1,11 +1,11 @@
 <template>
   <div id="posts">
     <ul>
-      <li v-for="post in posts" :key="post.index">
+      <li v-for="(post, index) in posts" :key="post.id">
         <h3>{{ post.title }}</h3>
         <p>{{ post.body }}</p>
         <button class="edit">Edit</button>
-        <button class="delete" @click="deletePost(post.index)">Delete</button>
+        <button class="delete" @click="deletePost(index)">Delete</button>
       </li>
     </ul>
   </div>
