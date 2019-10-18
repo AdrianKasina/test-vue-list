@@ -1,20 +1,20 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <HeaderTitle msg="The list of posts" />
-    <ListPosts />
+    <AppHeader msg="The list of posts" />
+    <PostsList />
   </div>
 </template>
 
 <script>
-import HeaderTitle from "./components/HeaderTitle.vue";
-import ListPosts from "./components/ListPosts.vue";
+import AppHeader from "./components/AppHeader.vue";
+import PostsList from "./components/PostsList.vue";
 
 export default {
   name: "app",
   components: {
-    HeaderTitle,
-    ListPosts
+    AppHeader,
+    PostsList
   }
 };
 </script>

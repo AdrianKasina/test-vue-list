@@ -14,10 +14,10 @@
 
 <script>
 import axios from "axios";
-import Modal from "./Modal.vue";
+import Modal from "./ViewPostModal.vue";
 
 export default {
-  name: "ListPosts",
+  name: "PostsList",
   components: {
     Modal
   },

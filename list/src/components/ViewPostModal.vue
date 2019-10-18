@@ -20,9 +20,9 @@
 import axios from "axios";
 
 export default {
-  name: "EditModal",
+  name: "Edit-modal",
   props: {
-    post: Object
+    post: { type: Object, requierd: true }
   },
   methods: {
     upgrade: function(index) {
